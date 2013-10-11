@@ -1,0 +1,49 @@
+<%@page import="javax.portlet.PortletPreferences"%>
+<%@page import="com.liferay.portlet.PortletPreferencesFactoryUtil"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%
+	boolean isAdmin = false;
+	boolean isSignedIn = themeDisplay.isSignedIn();
+	for (Role role : user.getRoles()) {
+		if("Administrator".equals(role.getName()) || "Power Console".equals(role.getName())) {
+			isAdmin = true;
+			break;
+		}
+	}
+	PortletPreferences prefs = PortletPreferencesFactoryUtil.getPortletPreferences(request, "consoleadminportlet_WAR_PowerConsoleportlet");
+	Boolean isDevMode = Boolean.valueOf(prefs.getValue("devMode", "false"));
+%>
+<c:if test="<%= (isSignedIn && isDevMode) || isAdmin%>">
+	<link rel="stylesheet" href="/html/common/themes/jquery.terminal.css" type="text/css">
+	<script type="text/javascript" src="/html/common/themes/service.js"></script>
+	<script type="text/javascript">
+	var welcomeMessage = '<%= prefs.getValue("welcomeMessage", "") %>';
+	var consoleHeight = <%= prefs.getValue("height", "100") %>;
+	var userId = <%= user.getUserId()%>;
+	var companyId = <%= themeDisplay.getCompanyId()%>
+
+	window.onload = initialize;
+	function initialize() {
+		var body = document.getElementsByTagName('head')[0];
+		if(typeof(jQuery) == "undefined") {
+			var script = document.createElement("script");
+		    script.type = "text/javascript";
+		    script.src = "/html/common/themes/jquery-1.5.min.js";
+		    document.body.appendChild(script);
+		}
+		var termScript = document.createElement("script");
+		termScript.type = "text/javascript";
+		termScript.src = "/html/common/themes/jquery.terminal-0.7.6.min.js";
+	    document.body.appendChild(termScript);
+	    
+	    var pcScript = document.createElement("script");
+		pcScript.type = "text/javascript";
+		pcScript.src = "/html/common/themes/powerconsole.js";
+	    document.body.appendChild(pcScript);
+	}
+
+
+	</script>
+	
+	<div id="tilda"></div>
+</c:if>

@@ -1,0 +1,1 @@
+create index IX_6483D896 on powerconsole_CommandHistory (userId);

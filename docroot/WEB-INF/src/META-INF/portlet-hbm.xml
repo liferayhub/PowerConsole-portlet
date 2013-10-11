@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="org.liferayhub.pc.model.CommandHistory" />
+	<import class="org.liferayhub.pc.model.PowerConsole" />
+	<class name="org.liferayhub.pc.model.impl.CommandHistoryImpl"
+		table="powerconsole_CommandHistory">
+		<cache usage="read-write" />
+		<id name="id" column="id_" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="mode"
+			type="com.liferay.portal.dao.orm.hibernate.StringType" column="mode_" />
+		<property name="command"
+			type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="userId"
+			type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="executionDate" type="org.hibernate.type.TimestampType" />
+		<property name="executionTime"
+			type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+</hibernate-mapping>

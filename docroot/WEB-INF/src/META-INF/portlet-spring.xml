@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	default-destroy-method="destroy" default-init-method="afterPropertiesSet"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="org.liferayhub.pc.service.CommandHistoryLocalService"
+		class="org.liferayhub.pc.service.impl.CommandHistoryLocalServiceImpl" />
+	<bean id="org.liferayhub.pc.service.persistence.CommandHistoryPersistence"
+		class="org.liferayhub.pc.service.persistence.CommandHistoryPersistenceImpl"
+		parent="basePersistence" />
+	<bean id="org.liferayhub.pc.service.PowerConsoleLocalService"
+		class="org.liferayhub.pc.service.impl.PowerConsoleLocalServiceImpl" />
+	<bean id="org.liferayhub.pc.service.PowerConsoleService" class="org.liferayhub.pc.service.impl.PowerConsoleServiceImpl" />
+</beans>

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="org.liferayhub.pc.model.CommandHistory">
+		<field name="id" type="long" />
+		<field name="mode" type="String" />
+		<field name="command" type="String" />
+		<field name="userId" type="long" />
+		<field name="executionDate" type="Date" />
+		<field name="executionTime" type="long" />
+	</model>
+</model-hints>
